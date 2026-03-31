@@ -1,0 +1,51 @@
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.kotlin
+
+# Keep project structure files for this non-Maven/Gradle IntelliJ Java project
+!.idea/
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/.gitignore
+!*.iml
+
+# Ignore user-specific IntelliJ files
+.idea/workspace.xml
+.idea/shelf/
+.idea/caches/
+.idea/libraries/
+.idea/httpRequests/
+.idea/dataSources/
+.idea/dataSources.local.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/contentModel.xml
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
