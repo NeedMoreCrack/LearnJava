@@ -1,0 +1,7 @@
+name=Alex
+age=25
+gender=male
+height=170.0
+hobby=swim
+name=Anna
+salary=50000
