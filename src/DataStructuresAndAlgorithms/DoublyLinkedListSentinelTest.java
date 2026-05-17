@@ -1,11 +1,7 @@
 package DataStructuresAndAlgorithms;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 public class DoublyLinkedListSentinelTest {
-    @Test
-    @DisplayName("測試addFirst")
+    // 測試addFirst
     public void test1(){
         DoublyLinkedListSentinel doublyLinkedListSentinel = new DoublyLinkedListSentinel();
         doublyLinkedListSentinel.addFirst(1);
@@ -17,8 +13,7 @@ public class DoublyLinkedListSentinelTest {
         }
     }
 
-    @Test
-    @DisplayName("測試addLast")
+    // 測試addLast
     public void test2(){
         DoublyLinkedListSentinel doublyLinkedListSentinel = new DoublyLinkedListSentinel();
         doublyLinkedListSentinel.addLast(1);
@@ -30,8 +25,7 @@ public class DoublyLinkedListSentinelTest {
         }
     }
 
-    @Test
-    @DisplayName("測試removeFirst")
+    // 測試removeFirst
     public void test3(){
         DoublyLinkedListSentinel doublyLinkedListSentinel = new DoublyLinkedListSentinel();
         doublyLinkedListSentinel.addLast(1);
@@ -45,8 +39,7 @@ public class DoublyLinkedListSentinelTest {
         }
     }
 
-    @Test
-    @DisplayName("測試removeLast")
+    // 測試removeLast
     public void test4(){
         DoublyLinkedListSentinel doublyLinkedListSentinel = new DoublyLinkedListSentinel();
         doublyLinkedListSentinel.addLast(1);
@@ -60,8 +53,7 @@ public class DoublyLinkedListSentinelTest {
         }
     }
 
-    @Test
-    @DisplayName("測試removeByValue")
+    // 測試removeByValue
     public void test5(){
         DoublyLinkedListSentinel doublyLinkedListSentinel = new DoublyLinkedListSentinel();
         doublyLinkedListSentinel.addLast(1);

@@ -1,12 +1,8 @@
 package DataStructuresAndAlgorithms;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 public class SinglyLinkedListSentinelTest {
 
-    @Test
-    @DisplayName("測試addFirst")
+    // 測試addFirst
     public void test1() {
         SinglyLinkedListSentinel singlyLinkedListSentinel = new SinglyLinkedListSentinel();
         singlyLinkedListSentinel.addFirst(1);
@@ -15,7 +11,6 @@ public class SinglyLinkedListSentinelTest {
         singlyLinkedListSentinel.loop2(System.out::println);
     }
 
-    @Test
     public void test2(){
         SinglyLinkedListSentinel singlyLinkedListSentinel = new SinglyLinkedListSentinel();
         singlyLinkedListSentinel.addFirst(1);
@@ -27,8 +22,7 @@ public class SinglyLinkedListSentinelTest {
         }
     }
 
-    @Test
-    @DisplayName("測試addLast")
+    // 測試addLast
     public void test3(){
         SinglyLinkedListSentinel singlyLinkedListSentinel = new SinglyLinkedListSentinel();
         singlyLinkedListSentinel.addLast(1);
@@ -43,8 +37,7 @@ public class SinglyLinkedListSentinelTest {
         System.out.println(singlyLinkedListSentinel.get(3));
     }
 
-    @Test
-    @DisplayName("測試insert")
+    // 測試insert
     public void test4(){
         SinglyLinkedListSentinel singlyLinkedListSentinel = new SinglyLinkedListSentinel();
         singlyLinkedListSentinel.addLast(1);
@@ -57,8 +50,7 @@ public class SinglyLinkedListSentinelTest {
         }
     }
 
-    @Test
-    @DisplayName("測試removeFirst")
+    // 測試removeFirst
     public void test5(){
         SinglyLinkedListSentinel singlyLinkedListSentinel = new SinglyLinkedListSentinel();
         singlyLinkedListSentinel.addLast(1);
@@ -71,8 +63,7 @@ public class SinglyLinkedListSentinelTest {
         }
     }
 
-    @Test
-    @DisplayName("測試remove")
+    // 測試remove
     public void test6(){
         SinglyLinkedListSentinel singlyLinkedListSentinel = new SinglyLinkedListSentinel();
         singlyLinkedListSentinel.addLast(1);
