@@ -1,10 +1,15 @@
 package test;
 
+import java.io.File;
+
 public class test {
     public static void main(String[] args) {
-        int a = 0;
-        int b = ++a + a++ + ++a + a++ + a;
-        System.out.println("a = " + a);
-        System.out.println("b = " + b);
+        File file = new File("D:"+File.separator+"Company");
+        File[] files = file.listFiles();
+        for (File f : files) {
+            if (f.getName().endsWith(".zip")) {
+                System.out.println(f.getName());
+            }
+        }
     }
 }
