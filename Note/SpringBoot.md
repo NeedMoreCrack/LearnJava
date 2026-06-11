@@ -74,7 +74,7 @@
         String token = JWT.create() //建立JWT物件
             .withClaim("user",claims) //將儲存的資訊放入名為user的Claim中
             .withExpiresAt(new Date(System.currentTimeMillis()+1000*60*60*12)) //單位：毫秒 設定當前時間+12小時
-            .sign(Algorithm.HMAC256("mywebproject")); //使用HMAC256演算法與自訂密鑰簽署token
+            .sign(algorithm.HMAC256("mywebproject")); //使用HMAC256演算法與自訂密鑰簽署token
     ```
 2. 驗證Token
     ```Java
@@ -82,7 +82,7 @@
         String token = "Token";
 
         //建立JWT驗證器，指定使用的密鑰與加密演算法
-        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256("myWebProject")).build();
+        JWTVerifier jwtVerifier = JWT.require(algorithm.HMAC256("myWebProject")).build();
 
         //驗證並解析 token，若驗證失敗會拋出異常
         DecodedJWT decodedJWT = jwtVerifier.verify(token);

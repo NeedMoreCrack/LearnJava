@@ -96,6 +96,92 @@ kubectl get cj       # CronJob
 kubectl get pv       # PersistentVolume
 kubectl get pvc      # PersistentVolumeClaim
 ```
+---
+
+## 推薦用別名的方式
+
+### Windows
+1. 先看 PowerShell profile 位置：
+```
+$PROFILE
+```
+2. 打開後加入以下命令  檔案不存在就建立一個
+```bash
+function k { kubectl @args }
+
+function kgp { kubectl get pods @args }
+function kgs { kubectl get svc @args }
+function kgd { kubectl get deploy @args }
+function kgn { kubectl get nodes @args }
+function kga { kubectl get all @args }
+
+function kd { kubectl describe @args }
+function kdp { kubectl describe pod @args }
+function kds { kubectl describe svc @args }
+
+function kl { kubectl logs @args }
+function kex { kubectl exec -it @args }
+function kaf { kubectl apply -f @args }
+function kdf { kubectl delete -f @args }
+```
+
+### MacOS
+1.在.zshrc內加入以下命令
+```bash
+# Kubernetes aliases / functions
+
+k() {
+  kubectl "$@"
+}
+
+kgp() {
+  kubectl get pods "$@"
+}
+
+kgs() {
+  kubectl get svc "$@"
+}
+
+kgd() {
+  kubectl get deploy "$@"
+}
+
+kgn() {
+  kubectl get nodes "$@"
+}
+
+kga() {
+  kubectl get all "$@"
+}
+
+kd() {
+  kubectl describe "$@"
+}
+
+kdp() {
+  kubectl describe pod "$@"
+}
+
+kds() {
+  kubectl describe svc "$@"
+}
+
+kl() {
+  kubectl logs "$@"
+}
+
+kex() {
+  kubectl exec -it "$@"
+}
+
+kaf() {
+  kubectl apply -f "$@"
+}
+
+kdf() {
+  kubectl delete -f "$@"
+}
+```
 
 ---
 
