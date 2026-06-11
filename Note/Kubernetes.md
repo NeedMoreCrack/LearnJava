@@ -115,6 +115,7 @@ function kgd { kubectl get deploy @args }
 function kgn { kubectl get nodes @args }
 function kga { kubectl get all @args }
 
+function kc { kubectl create @args }
 function kd { kubectl describe @args }
 function kdp { kubectl describe pod @args }
 function kds { kubectl describe svc @args }
@@ -152,6 +153,10 @@ function kgn() {
 
 function kga() {
   kubectl get all "$@"
+}
+
+function kc() {
+  kubectl create "$@"
 }
 
 function kd() {
