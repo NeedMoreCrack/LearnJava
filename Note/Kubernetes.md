@@ -130,55 +130,55 @@ function kdf { kubectl delete -f @args }
 ```bash
 # Kubernetes aliases / functions
 
-k() {
+function k() {
   kubectl "$@"
 }
 
-kgp() {
+function kgp() {
   kubectl get pods "$@"
 }
 
-kgs() {
+function kgs() {
   kubectl get svc "$@"
 }
 
-kgd() {
+function kgd() {
   kubectl get deploy "$@"
 }
 
-kgn() {
+function kgn() {
   kubectl get nodes "$@"
 }
 
-kga() {
+function kga() {
   kubectl get all "$@"
 }
 
-kd() {
+function kd() {
   kubectl describe "$@"
 }
 
-kdp() {
+function kdp() {
   kubectl describe pod "$@"
 }
 
-kds() {
+function kds() {
   kubectl describe svc "$@"
 }
 
-kl() {
+function kl() {
   kubectl logs "$@"
 }
 
-kex() {
+function kex() {
   kubectl exec -it "$@"
 }
 
-kaf() {
+function kaf() {
   kubectl apply -f "$@"
 }
 
-kdf() {
+function kdf() {
   kubectl delete -f "$@"
 }
 ```
