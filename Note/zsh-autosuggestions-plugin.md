@@ -8,10 +8,16 @@
 2. Add the plugin to the list of plugins for Oh My Zsh to load (inside ~/.zshrc):
 
     ```
-        plugins=( 
-            # other plugins...
-            zsh-autosuggestions
+        export ZSH="$HOME/.oh-my-zsh"
+
+        ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+        plugins=(
+          git
+          zsh-autosuggestions
         )
+
+        source $ZSH/oh-my-zsh.sh
     ```
 
 3. Start a new terminal session.
