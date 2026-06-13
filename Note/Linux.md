@@ -118,6 +118,456 @@
 
 ---
 
+# grep / sed / awk 常用筆記
+
+## 一句話區分
+
+| 指令 | 主要用途 | 想像成 |
+|---|---|---|
+| grep | 找出符合條件的行 | 搜尋器 |
+| sed | 修改、替換、刪除文字 | 文字替換器 |
+| awk | 依欄位處理資料、計算、統計 | 文字版 Excel |
+
+## grep 常用用法
+
+### 基本語法
+grep "關鍵字" 檔案
+
+範例：
+
+```bash
+grep "ERROR" grep_access.log
+```
+
+### 常用參數
+
+| 參數 | 用途 |
+|---|---|
+| -i | 忽略大小寫 |
+| -n | 顯示行號 |
+| -v | 反向搜尋，不包含 |
+| -c | 只統計符合幾行 |
+| -E | 使用延伸正規表示式 |
+| -r | 遞迴搜尋資料夾 |
+| -l | 只列出符合的檔名 |
+| -o | 只印出匹配到的文字 |
+| --color=auto | 高亮顯示匹配字 |
+
+### grep 常見範例
+
+**找出 ERROR**
+```bash
+grep "ERROR" grep_access.log
+```
+
+**找出 ERROR 並顯示行號**
+```bash
+grep -n "ERROR" grep_access.log
+```
+
+**找出不是 INFO 的行**
+```bash
+grep -v "INFO" grep_access.log
+```
+
+**忽略大小寫搜尋 error**
+```bash
+grep -i "error" grep_access.log
+```
+
+**統計 ERROR 有幾行**
+```bash
+grep -c "ERROR" grep_access.log
+```
+
+**找出 ERROR 或 WARN**
+```bash
+grep -E "ERROR|WARN" grep_access.log
+```
+
+**找出 4xx 狀態碼**
+```bash
+grep -E "status=4[0-9][0-9]" grep_access.log
+```
+
+**找出 5xx 狀態碼**
+```bash
+grep -E "status=5[0-9][0-9]" grep_access.log
+```
+
+**只取出 status=xxx**
+```bash
+grep -o "status=[0-9][0-9][0-9]" grep_access.log
+```
+
+## sed 常用用法
+
+### 基本語法
+sed '指令' 檔案
+
+sed 最常用的是：
+sed 's/舊文字/新文字/g' 檔案
+
+- s = substitute，替換
+- g = global，一行內全部替換
+
+### 常用操作
+
+| 寫法 | 用途 |
+|---|---|
+| s/old/new/ | 替換第一個 old |
+| s/old/new/g | 替換所有 old |
+| 1d | 刪除第 1 行 |
+| 5d | 刪除第 5 行 |
+| 2,5d | 刪除第 2 到第 5 行 |
+| /pattern/d | 刪除符合 pattern 的行 |
+| p | 印出指定行，常搭配 -n |
+| -n | 不自動印出全部內容 |
+| -i | 直接修改原檔，小心使用 |
+
+### sed 常見範例
+
+**把 inactive 改成 disabled**
+```bash
+sed 's/inactive/disabled/g' sed_users.csv
+```
+
+**把 example.com 改成 demo.com**
+```bash
+sed 's/example.com/demo.com/g' sed_users.csv
+```
+
+**刪除第一行 header**
+```bash
+sed '1d' sed_users.csv
+```
+
+**只印第 3 行**
+```bash
+sed -n '3p' sed_users.csv
+```
+
+**只印第 2 到第 5 行**
+```bash
+sed -n '2,5p' sed_users.csv
+```
+
+**刪除包含 inactive 的行**
+```bash
+sed '/inactive/d' sed_users.csv
+```
+
+**刪除空行**
+```bash
+sed '/^$/d' file.txt
+```
+
+**把逗號改成 tab**
+```bash
+sed 's/,/\t/g' sed_users.csv
+```
+
+**每行開頭加文字**
+```bash
+sed 's/^/USER: /' sed_users.csv
+```
+
+**每行結尾加文字**
+```bash
+sed 's/$/,checked/' sed_users.csv
+```
+
+**直接修改原檔**
+
+```bash
+sed -i 's/inactive/disabled/g' sed_users.csv
+```
+
+macOS 要這樣：
+
+```bash
+sed -i '' 's/inactive/disabled/g' sed_users.csv
+```
+
+## awk 常用用法
+
+### 基本語法
+awk '條件 {動作}' 檔案
+
+如果是 CSV：
+
+```bash
+awk -F ',' '{print $1, $2}' sed_users.csv
+```
+
+如果是 TSV：
+
+```bash
+awk -F '\t' '{print $1, $2}' awk_sales.tsv
+```
+
+### awk 內建變數
+
+| 變數 | 意思 |
+|---|---|
+| $0 | 整行 |
+| $1 | 第 1 欄 |
+| $2 | 第 2 欄 |
+| $NF | 最後一欄 |
+| NF | 目前這行有幾欄 |
+| NR | 目前是第幾行 |
+| FS | 輸入分隔符號 |
+| OFS | 輸出分隔符號 |
+
+### awk 常見範例
+
+**印出整行**
+```bash
+awk '{print $0}' awk_sales.tsv
+```
+
+**印出第 1 欄和第 2 欄**
+```bash
+awk -F '\t' '{print $1, $2}' awk_sales.tsv
+```
+
+**跳過 header**
+```bash
+awk -F '\t' 'NR > 1 {print $0}' awk_sales.tsv
+```
+
+**印出行號**
+```bash
+awk '{print NR, $0}' awk_sales.tsv
+```
+
+**只印 region 是 TW 的資料**
+```bash
+awk -F '\t' '$2 == "TW" {print $0}' awk_sales.tsv
+```
+
+**只印 sales 大於 10000 的資料**
+```bash
+awk -F '\t' '$6 > 10000 {print $0}' awk_sales.tsv
+```
+
+**計算 sales 總和**
+```bash
+awk -F '\t' 'NR > 1 {sum += $6} END {print sum}' awk_sales.tsv
+```
+
+**計算平均 sales**
+```bash
+awk -F '\t' 'NR > 1 {sum += $6; count++} END {print sum / count}' awk_sales.tsv
+```
+
+**依照 region 分組加總 sales**
+```bash
+awk -F '\t' 'NR > 1 {sum[$2] += $6} END {for (r in sum) print r, sum[r]}' awk_sales.tsv
+```
+
+**依照 product 分組加總 sales**
+```bash
+awk -F '\t' 'NR > 1 {sum[$3] += $6} END {for (p in sum) print p, sum[p]}' awk_sales.tsv
+```
+
+**找出最大 sales**
+```bash
+awk -F '\t' 'NR == 2 || $6 > max {max = $6; line = $0} END {print line}' awk_sales.tsv
+```
+
+**把 TSV 轉 CSV**
+```bash
+awk -F '\t' 'BEGIN {OFS=","} {$1=$1; print}' awk_sales.tsv
+```
+
+## grep + sed 組合
+
+**找出 ERROR，然後把 ERROR 改成 FAIL**
+```bash
+grep "ERROR" grep_access.log | sed 's/ERROR/FAIL/g'
+```
+
+**找出 WARN，然後改成 WARNING**
+```bash
+grep "WARN" grep_access.log | sed 's/WARN/WARNING/g'
+```
+
+**找出 /api/，然後替換路徑**
+```bash
+grep "/api/" grep_access.log | sed 's#/api/#/backend-api/#g'
+```
+
+這裡用 `#` 當分隔符，避免 `/api/` 裡面的 `/` 很難讀。
+
+## grep + awk 組合
+
+**找出 ERROR，只印日期、時間、狀態**
+```bash
+grep "ERROR" grep_access.log | awk '{print $1, $2, $3}'
+```
+
+**找出 ERROR，只印 user 和 path**
+```bash
+grep "ERROR" grep_access.log | awk '{print $5, $8}'
+```
+
+**找出 status=500 的行數**
+```bash
+grep "status=500" grep_access.log | awk 'END {print NR}'
+```
+
+其實這個用 grep 就可以：
+
+```bash
+grep -c "status=500" grep_access.log
+```
+
+## sed + awk 組合
+
+**先把 CSV 的逗號改成 tab，再用 awk 取欄位**
+```bash
+sed 's/,/\t/g' sed_users.csv | awk -F '\t' '{print $2, $5}'
+```
+
+**先刪除 header，再取姓名和狀態**
+```bash
+sed '1d' sed_users.csv | awk -F ',' '{print $2, $5}'
+```
+
+**先把 inactive 改成 disabled，再印狀態欄**
+```bash
+sed 's/inactive/disabled/g' sed_users.csv | awk -F ',' '{print $5}'
+```
+
+## grep + sed + awk 組合
+
+**找出 ERROR → 把 ERROR 改成 FAIL → 印日期、時間、path、status**
+```bash
+grep "ERROR" grep_access.log \
+  | sed 's/ERROR/FAIL/g' \
+  | awk '{print $1, $2, $8, $9}'
+```
+
+**找出 5xx 錯誤 → 只取 user、path、status**
+```bash
+grep -E "status=5[0-9][0-9]" grep_access.log \
+  | awk '{print $5, $8, $9}'
+```
+
+**找出 /api/ 紀錄 → 隱藏 IP → 印出結果**
+```bash
+grep "/api/" grep_access.log \
+  | sed 's/ip=[0-9.]\+/ip=[hidden]/g'
+```
+
+## 常用排序組合
+
+**統計每個 status 出現次數**
+```bash
+grep -o "status=[0-9][0-9][0-9]" grep_access.log \
+  | sort \
+  | uniq -c
+```
+
+**統計每個 user 出現次數**
+```bash
+grep -o "user=[a-zA-Z0-9_]*" grep_access.log \
+  | sort \
+  | uniq -c
+```
+
+**統計每個 method 出現次數**
+```bash
+grep -o "method=[A-Z]*" grep_access.log \
+  | sort \
+  | uniq -c
+```
+
+**awk 分組統計後排序**
+```bash
+awk -F '\t' 'NR > 1 {sum[$2] += $6} END {for (r in sum) print r, sum[r]}' awk_sales.tsv \
+  | sort -k2 -nr
+```
+
+## 實務常見用法
+
+**看 log 裡面的錯誤**
+```bash
+grep -E "ERROR|WARN|Exception" app.log
+```
+
+**看 log 並持續追蹤**
+```bash
+tail -f app.log
+```
+
+搭配 grep：
+
+```bash
+tail -f app.log | grep "ERROR"
+```
+
+**找出某個時間點附近的 log**
+```bash
+grep "2026-06-14 08:3" grep_access.log
+```
+
+**把結果輸出到新檔案**
+```bash
+grep "ERROR" grep_access.log > error.log
+```
+
+**追加到檔案**
+```bash
+grep "WARN" grep_access.log >> error.log
+```
+
+## 最常背的幾個
+
+```bash
+# grep 找關鍵字
+grep "ERROR" file.log
+
+# grep 找多個條件
+grep -E "ERROR|WARN" file.log
+
+# grep 反向搜尋
+grep -v "INFO" file.log
+
+# sed 替換
+sed 's/old/new/g' file.txt
+
+# sed 刪除第一行
+sed '1d' file.txt
+
+# awk 印欄位
+awk -F ',' '{print $1, $2}' file.csv
+
+# awk 跳過 header
+awk -F ',' 'NR > 1 {print $0}' file.csv
+
+# awk 加總
+awk -F ',' 'NR > 1 {sum += $3} END {print sum}' file.csv
+
+# sort + uniq 統計
+grep -o "status=[0-9][0-9][0-9]" file.log | sort | uniq -c
+```
+
+## 建議記法
+
+剛開始可以這樣想：
+grep = 找行
+
+sed  = 改字
+
+awk  = 拆欄位、算數字
+
+實務上最常見的組合是：
+grep 找出你要的資料 | sed 清洗文字 | awk 取欄位或統計
+
+---
+
 ## 練習 grep / sed / awk
 
 ### 先準備下列三個檔案
