@@ -141,17 +141,17 @@ grep "ERROR" grep_access.log
 
 ### 常用參數
 
-| 參數 | 用途 |
-|---|---|
-| -i | 忽略大小寫 |
-| -n | 顯示行號 |
-| -v | 反向搜尋，不包含 |
-| -c | 只統計符合幾行 |
-| -E | 使用延伸正規表示式 |
-| -r | 遞迴搜尋資料夾 |
-| -l | 只列出符合的檔名 |
-| -o | 只印出匹配到的文字 |
-| --color=auto | 高亮顯示匹配字 |
+| 參數 | 用途 | 長參數名稱 |
+|---|---|---|
+| -i | 忽略大小寫 | --ignore-case |
+| -n | 顯示行號 | --line-number |
+| -v | 反向搜尋，不包含 | --invert-match |
+| -c | 只統計符合幾行 | --count |
+| -E | 使用延伸正規表示式 | --extended-regexp |
+| -r | 遞迴搜尋資料夾 | --recursive |
+| -l | 只列出符合的檔名 | --files-with-matches |
+| -o | 只印出匹配到的文字 | --only-matching |
+| --color=auto | 高亮顯示匹配字 | - |
 
 ### grep 常見範例
 
