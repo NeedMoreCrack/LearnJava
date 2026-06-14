@@ -151,7 +151,7 @@ grep "ERROR" grep_access.log
 | -r | 遞迴搜尋資料夾 | --recursive |
 | -l | 只列出符合的檔名 | --files-with-matches |
 | -o | 只印出匹配到的文字 | --only-matching |
-| --color=auto | 高亮顯示匹配字 | - |
+| --color=auto | 高亮顯示匹配字 |  |
 
 ### grep 常見範例
 
