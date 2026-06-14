@@ -18,6 +18,8 @@
         )
 
         source $ZSH/oh-my-zsh.sh
+
+        PROMPT='%F{green}➜%f  %F{cyan}%~%f $(git_prompt_info)'
     ```
 
 3. Start a new terminal session.
