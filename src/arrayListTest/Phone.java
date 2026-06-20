@@ -1,4 +1,4 @@
-package arraylisttest;
+package arrayListTest;
 
 public class Phone {
     private String name;

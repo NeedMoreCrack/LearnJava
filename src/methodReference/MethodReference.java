@@ -1,4 +1,4 @@
-package methodreference;
+package methodReference;
 
 import java.util.Arrays;
 

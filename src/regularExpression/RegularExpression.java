@@ -1,4 +1,4 @@
-package regularexpression;
+package regularExpression;
 
 public class  RegularExpression {
     public static boolean isValidEmail(String email) {

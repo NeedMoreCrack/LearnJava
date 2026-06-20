@@ -1,4 +1,4 @@
-package regularexpression;
+package regularExpression;
 
 public class Date {
     public static void main(String[] args) {

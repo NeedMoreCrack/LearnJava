@@ -1,4 +1,4 @@
-package stringdemo;
+package stringDemo;
 
 public class String_07 {
     public static void main(String[] args) {

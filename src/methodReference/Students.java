@@ -1,4 +1,4 @@
-package methodreference;
+package methodReference;
 
 public class Students {
     private String name;
