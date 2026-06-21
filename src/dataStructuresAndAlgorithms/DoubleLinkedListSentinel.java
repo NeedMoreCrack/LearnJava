@@ -1,4 +1,4 @@
-package DataStructuresAndAlgorithms;
+package dataStructuresAndAlgorithms;
 
 import java.util.Iterator;
 

@@ -1,4 +1,4 @@
-package DataStructuresAndAlgorithms;
+package dataStructuresAndAlgorithms;
 
 public class MergeSort {
     public static void main(String[] args) {

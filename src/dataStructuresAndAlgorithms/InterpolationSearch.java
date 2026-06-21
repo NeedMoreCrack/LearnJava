@@ -1,4 +1,4 @@
-package DataStructuresAndAlgorithms;
+package dataStructuresAndAlgorithms;
 
 public class InterpolationSearch {
     public static void main(String[] args) {

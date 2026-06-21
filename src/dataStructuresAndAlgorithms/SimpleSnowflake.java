@@ -1,4 +1,4 @@
-package DataStructuresAndAlgorithms;
+package dataStructuresAndAlgorithms;
 
 public class SimpleSnowflake {
     private static final long EPOCH = 1704067200000L; // 起始時間：2025-01-01

@@ -1,4 +1,4 @@
-package DataStructuresAndAlgorithms;
+package dataStructuresAndAlgorithms;
 
 public class DoublyLinkedListSentinelTest {
     // 測試addFirst
