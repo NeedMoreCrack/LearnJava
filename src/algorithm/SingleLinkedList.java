@@ -1,4 +1,4 @@
-package Algorithm;
+package algorithm;
 
 public class SingleLinkedList {
     private Node head = null;

@@ -1,4 +1,4 @@
-package dataStructuresAndAlgorithms;
+package dataStructuresAndAlgorithms.bubbleSort;
 
 import java.util.Arrays;
 
