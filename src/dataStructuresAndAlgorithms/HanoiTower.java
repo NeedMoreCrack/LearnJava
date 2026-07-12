@@ -6,6 +6,7 @@ public class HanoiTower {
     static LinkedList<Integer> a = new LinkedList<>();
     static LinkedList<Integer> b = new LinkedList<>();
     static LinkedList<Integer> c = new LinkedList<>();
+    static int count = 0;
 
     static void init(int n){
         for (int i = n; i > 0; i--) {
@@ -38,11 +39,13 @@ public class HanoiTower {
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
+        count++;
+        System.out.println("移動次數: "+count);
     }
 
     public static void main(String[] args) {
-        init(3);
+        init(5);
         print();
-        move(3,a,b,c);
+        move(5,a,b,c);
     }
 }
