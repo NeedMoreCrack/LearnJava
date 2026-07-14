@@ -31,6 +31,8 @@ public class HanoiTower {
         move(n-1,a,c,b);
         c.addLast(a.removeLast());
         print();
+        count++;
+        System.out.println("移動次數: "+count);
         move(n-1,b,a,c);
     }
 
@@ -39,13 +41,11 @@ public class HanoiTower {
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
-        count++;
-        System.out.println("移動次數: "+count);
     }
 
     public static void main(String[] args) {
-        init(5);
+        init(3);
         print();
-        move(5,a,b,c);
+        move(3,a,b,c);
     }
 }
