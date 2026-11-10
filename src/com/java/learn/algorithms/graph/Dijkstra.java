@@ -1,5 +1,6 @@
 package com.java.learn.algorithms.graph;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dijkstra {
@@ -24,5 +25,44 @@ public class Dijkstra {
         v4.edges = List.of(new Edge(v5,6));
         v5.edges = List.of();
         v6.edges = List.of(new Edge(v5,9));
+
+        List<Vertex> graph = List.of(v1, v2, v3, v4, v5, v6);
+
+        dijkstra(graph,v1);
+    }
+
+    public static void dijkstra(List<Vertex> graph,Vertex start) {
+        ArrayList<Vertex> shortestPath = new ArrayList<>(graph);
+        start.dist = 0;
+        while (!shortestPath.isEmpty()) {
+            Vertex curr = chooseMinDistVertex(shortestPath);
+            updateNeighboursDist(curr, graph);
+            shortestPath.remove(curr);
+        }
+        for (Vertex v : graph) {
+            System.out.println(v.name+" "+v.dist);
+        }
+    }
+
+    public static Vertex chooseMinDistVertex(List<Vertex> graph) {
+        Vertex min = graph.getFirst();
+        for (int i = 1; i < graph.size(); i++) {
+            if(min.dist > graph.get(i).dist) {
+                min = graph.get(i);
+            }
+        }
+        return min;
+    }
+
+    public static void updateNeighboursDist(Vertex curr, List<Vertex> graph) {
+        for (Edge edge : curr.edges) {
+            Vertex linked = edge.linked;
+            if(graph.contains(linked)) {
+                int dist = curr.dist + edge.weight;
+                if(dist < linked.dist) {
+                    linked.dist = dist;
+                }
+            }
+        }
     }
 }
