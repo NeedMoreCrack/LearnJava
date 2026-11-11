@@ -36,11 +36,12 @@ public class Dijkstra {
         start.dist = 0;
         while (!shortestPath.isEmpty()) {
             Vertex curr = chooseMinDistVertex(shortestPath);
-            updateNeighboursDist(curr, graph);
+            updateNeighboursDist(curr);
             shortestPath.remove(curr);
+            curr.visited = true;
         }
         for (Vertex v : graph) {
-            System.out.println(v.name+" "+v.dist);
+            System.out.println(v.name+" "+v.dist+" "+(v.prev != null ? v.prev.name : "null"));
         }
     }
 
@@ -54,13 +55,14 @@ public class Dijkstra {
         return min;
     }
 
-    public static void updateNeighboursDist(Vertex curr, List<Vertex> graph) {
+    public static void updateNeighboursDist(Vertex curr) {
         for (Edge edge : curr.edges) {
             Vertex linked = edge.linked;
-            if(graph.contains(linked)) {
+            if(!linked.visited) {
                 int dist = curr.dist + edge.weight;
                 if(dist < linked.dist) {
                     linked.dist = dist;
+                    linked.prev = curr;
                 }
             }
         }

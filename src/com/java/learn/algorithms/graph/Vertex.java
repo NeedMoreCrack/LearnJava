@@ -7,6 +7,7 @@ public class Vertex {
     List<Edge> edges;
     boolean visited;
     int dist = INFINITY;
+    Vertex prev = null;
 
     static final Integer INFINITY = Integer.MAX_VALUE;
 
